@@ -114,9 +114,11 @@ void MqttProtocol::SendText(const std::string& text) {
 void MqttProtocol::SendAudio(const std::vector<uint8_t>& data) {
     std::lock_guard<std::mutex> lock(channel_mutex_);
     if (udp_ == nullptr) {
+        ESP_LOGW(TAG, "Cannot send audio: UDP channel is not opened");
         return;
     }
 
+    ESP_LOGI(TAG, "Sending audio data, size: %zu bytes", data.size());
     std::string nonce(aes_nonce_);
     *(uint16_t*)&nonce[2] = htons(data.size());
     *(uint32_t*)&nonce[12] = htonl(++local_sequence_);
@@ -132,6 +134,7 @@ void MqttProtocol::SendAudio(const std::vector<uint8_t>& data) {
         ESP_LOGE(TAG, "Failed to encrypt audio data");
         return;
     }
+    ESP_LOGD(TAG, "Sending encrypted audio data, total size: %zu bytes", encrypted.size());
     udp_->Send(encrypted);
 }
 
@@ -208,6 +211,8 @@ bool MqttProtocol::OpenAudioChannel() {
         if (sequence != remote_sequence_ + 1) {
             ESP_LOGW(TAG, "Received audio packet with wrong sequence: %lu, expected: %lu", sequence, remote_sequence_ + 1);
         }
+
+        ESP_LOGI(TAG, "Received audio packet, sequence: %lu, size: %zu", sequence, data.size());
 
         std::vector<uint8_t> decrypted;
         size_t decrypted_size = data.size() - aes_nonce_.size();
