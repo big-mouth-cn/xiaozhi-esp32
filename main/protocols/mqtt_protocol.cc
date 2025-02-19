@@ -54,6 +54,7 @@ bool MqttProtocol::StartMqttClient() {
     });
 
     mqtt_->OnMessage([this](const std::string& topic, const std::string& payload) {
+        ESP_LOGI(TAG, "Received message on topic '%s': %s", topic.c_str(), payload.c_str());
         cJSON* root = cJSON_Parse(payload.c_str());
         if (root == nullptr) {
             ESP_LOGE(TAG, "Failed to parse json message %s", payload.c_str());
@@ -96,8 +97,10 @@ bool MqttProtocol::StartMqttClient() {
 
 void MqttProtocol::SendText(const std::string& text) {
     if (publish_topic_.empty()) {
+        ESP_LOGW(TAG, "Cannot send text: publish topic is not set");
         return;
     }
+    ESP_LOGI(TAG, "Publishing message to topic '%s': %s", publish_topic_.c_str(), text.c_str());
     mqtt_->Publish(publish_topic_, text);
 }
 
