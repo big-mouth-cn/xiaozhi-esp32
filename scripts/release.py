@@ -32,7 +32,7 @@ def merge_bin():
 def zip_bin(board_type, project_version):
     if not os.path.exists("releases"):
         os.makedirs("releases")
-    output_path = f"releases/v{project_version}_{board_type}.zip"
+    output_path = f"releases/v{project_version}_{board_type}_for_talkx.zip"
     if os.path.exists(output_path):
         os.remove(output_path)
     if os.system(f"zip -j {output_path} build/merged-binary.bin") != 0:
