@@ -11,12 +11,12 @@
 👉 [手工打造你的 AI 女友，新手入门教程【bilibili】](https://www.bilibili.com/video/BV1XnmFYLEJN/)
 
 ## 特性
+- :white_check_mark: 🎉🔥 支持使用自己的声音进行复刻
+- :white_check_mark: 🎉 支持使用自己的大模型服务
 - :white_check_mark: 基于 MQTT+UDP 协议的语音聊天
 - :white_check_mark: 支持多语言语音识别和语音生成
 - :white_check_mark: 支持多个AI、多个模型、多种声音切换
-- :white_check_mark: 支持通过大模型实现IoT能力（:bangbang: 需要支持function_call的大模型）
-- :white_check_mark: 支持使用自己的声音进行复刻
-- :white_check_mark: 支持使用自己的大模型服务
+- :white_check_mark: 支持通过大模型实现IoT能力（需要选择支持function_call的大模型）
 
 ### 开发中 :construction:
 - 长期记忆
