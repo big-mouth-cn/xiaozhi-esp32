@@ -1,4 +1,6 @@
-# 小智 AI 聊天机器人 for TalkX （XiaoZhi AI Chatbot for TalkX）
+# 小智 AI 聊天机器人 （XiaoZhi AI Chatbot）
+
+[![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=%E5%B0%8F%E6%99%BA%20AI%20%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA&text2=💖%20for%20TalkX&width=800&height=300)](https://github.com/Akshay090/svg-banners)
 
 本项目在开源智能硬件项目 [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 基础上调整，并且使用 MQTT+UDP 协议与 [TalkX](https://web.talkx.cn) 通信。因此小智硬件通过此项目连接的后台是 TalkX，而非小智官方后台。
 
