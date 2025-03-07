@@ -77,7 +77,6 @@
 
 # 鸣谢 :love_you_gesture:
 - 小虾智能机器人设备开源项目：[xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)
-- 小智 ESP32 后端开源项目：[xiaozhi-esp32-server](https://github.com/xinnan-tech/xiaozhi-esp32-server)
 - 使用 [Silero-VAD](https://github.com/snakers4/silero-vad) 来检测用户的说话活动
 - 使用 [Concentus](https://github.com/lostromb/concentus) 实现 Opus 音频编码/解码
 - 使用 [SenseVoice](https://github.com/FunAudioLLM/SenseVoice) 实现语音识别
