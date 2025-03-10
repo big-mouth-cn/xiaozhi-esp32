@@ -1,8 +1,8 @@
 # 小智 AI 聊天机器人 （XiaoZhi AI Chatbot）
 
-（中文 | [English](README_en.md) | [日本語](README_ja.md)）
+[![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=%E5%B0%8F%E6%99%BA%20AI%20%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA&text2=💖%20for%20TalkX&width=800&height=300)](https://github.com/Akshay090/svg-banners)
 
-这是虾哥的第一个硬件作品。
+本项目在开源智能硬件项目 [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 基础上调整，并且使用 MQTT+UDP 协议与 [TalkX](https://web.talkx.cn) 通信。因此小智硬件通过此项目连接的后台是 TalkX，而非小智官方后台。
 
 👉 [ESP32+SenseVoice+Qwen72B打造你的AI聊天伴侣！【bilibili】](https://www.bilibili.com/video/BV11msTenEH3/)
 
@@ -10,135 +10,75 @@
 
 👉 [手工打造你的 AI 女友，新手入门教程【bilibili】](https://www.bilibili.com/video/BV1XnmFYLEJN/)
 
-## 项目目的
+## 特性
+- :white_check_mark: 🎉🔥 支持使用自己的声音进行复刻
+- :white_check_mark: 🎉 支持使用自己的大模型服务
+- :white_check_mark: 基于 MQTT+UDP 协议的语音聊天
+- :white_check_mark: 支持多语言语音识别和语音生成
+- :white_check_mark: 支持多个AI、多个模型、多种声音切换
+- :white_check_mark: 支持通过大模型实现IoT能力（需要选择支持function_call的大模型）
 
-本项目是一个开源项目，以 MIT 许可证发布，允许任何人免费使用，并可以用于商业用途。
+### 开发中 :construction:
+- 长期记忆
 
-我们希望通过这个项目，能够帮助更多人入门 AI 硬件开发，了解如何将当下飞速发展的大语言模型应用到实际的硬件设备中。无论你是对 AI 感兴趣的学生，还是想要探索新技术的开发者，都可以通过这个项目获得宝贵的学习经验。
-
-欢迎所有人参与到项目的开发和改进中来。如果你有任何想法或建议，请随时提出 Issue 或加入群聊。
-
-学习交流 QQ 群：376893254
-
-## 已实现功能
-
-- Wi-Fi / ML307 Cat.1 4G
-- BOOT 键唤醒和打断，支持点击和长按两种触发方式
-- 离线语音唤醒 [ESP-SR](https://github.com/espressif/esp-sr)
-- 流式语音对话（WebSocket 或 UDP 协议）
-- 支持国语、粤语、英语、日语、韩语 5 种语言识别 [SenseVoice](https://github.com/FunAudioLLM/SenseVoice)
-- 声纹识别，识别是谁在喊 AI 的名字 [3D Speaker](https://github.com/modelscope/3D-Speaker)
-- 大模型 TTS（火山引擎 或 CosyVoice）
-- 大模型 LLM（Qwen, DeepSeek, Doubao）
-- 可配置的提示词和音色（自定义角色）
-- 短期记忆，每轮对话后自我总结
-- OLED / LCD 显示屏，显示信号强弱或对话内容
-- 支持 LCD 显示图片表情
-- 支持多语言（中文、英文）
-
-## 硬件部分
-
-### 面包板手工制作实践
-
-详见飞书文档教程：
-
-👉 [《小智 AI 聊天机器人百科全书》](https://ccnphfhqs21z.feishu.cn/wiki/F5krwD16viZoF0kKkvDcrZNYnhb?from=from_copylink)
-
-面包板效果图如下：
-
-![面包板效果图](docs/wiring2.jpg)
-
-### 已支持的开源硬件
-
-- <a href="https://oshwhub.com/li-chuang-kai-fa-ban/li-chuang-shi-zhan-pai-esp32-s3-kai-fa-ban" target="_blank" title="立创·实战派 ESP32-S3 开发板">立创·实战派 ESP32-S3 开发板</a>
-- <a href="https://github.com/espressif/esp-box" target="_blank" title="乐鑫 ESP32-S3-BOX3">乐鑫 ESP32-S3-BOX3</a>
-- <a href="https://docs.m5stack.com/zh_CN/core/CoreS3" target="_blank" title="M5Stack CoreS3">M5Stack CoreS3</a>
-- <a href="https://docs.m5stack.com/en/atom/Atomic%20Echo%20Base" target="_blank" title="AtomS3R + Echo Base">AtomS3R + Echo Base</a>
-- <a href="https://docs.m5stack.com/en/core/ATOM%20Matrix" target="_blank" title="AtomMatrix + Echo Base">AtomMatrix + Echo Base</a>
-- <a href="https://gf.bilibili.com/item/detail/1108782064" target="_blank" title="神奇按钮 2.4">神奇按钮 2.4</a>
-- <a href="https://www.waveshare.net/shop/ESP32-S3-Touch-AMOLED-1.8.htm" target="_blank" title="微雪电子 ESP32-S3-Touch-AMOLED-1.8">微雪电子 ESP32-S3-Touch-AMOLED-1.8</a>
-- <a href="https://github.com/Xinyuan-LilyGO/T-Circle-S3" target="_blank" title="LILYGO T-Circle-S3">LILYGO T-Circle-S3</a>
-- <a href="https://oshwhub.com/tenclass01/xmini_c3" target="_blank" title="虾哥 Mini C3">虾哥 Mini C3</a>
-- <a href="https://oshwhub.com/movecall/moji-xiaozhi-ai-derivative-editi" target="_blank" title="Movecall Moji ESP32S3">Moji 小智AI衍生版</a>
-- <a href="https://github.com/WMnologo/xingzhi-ai" target="_blank" title="无名科技Nologo-星智-1.54">无名科技Nologo-星智-1.54TFT</a>
-- <a href="https://github.com/WMnologo/xingzhi-ai" target="_blank" title="无名科技Nologo-星智-0.96">无名科技Nologo-星智-0.96TFT</a>
-- <a href="https://www.seeedstudio.com/SenseCAP-Watcher-W1-A-p-5979.html" target="_blank" title="SenseCAP Watcher">SenseCAP Watcher</a>
-<div style="display: flex; justify-content: space-between;">
-  <a href="docs/v1/lichuang-s3.jpg" target="_blank" title="立创·实战派 ESP32-S3 开发板">
-    <img src="docs/v1/lichuang-s3.jpg" width="240" />
-  </a>
-  <a href="docs/v1/espbox3.jpg" target="_blank" title="乐鑫 ESP32-S3-BOX3">
-    <img src="docs/v1/espbox3.jpg" width="240" />
-  </a>
-  <a href="docs/v1/m5cores3.jpg" target="_blank" title="M5Stack CoreS3">
-    <img src="docs/v1/m5cores3.jpg" width="240" />
-  </a>
-  <a href="docs/v1/atoms3r.jpg" target="_blank" title="AtomS3R + Echo Base">
-    <img src="docs/v1/atoms3r.jpg" width="240" />
-  </a>
-  <a href="docs/v1/magiclick.jpg" target="_blank" title="神奇按钮 2.4">
-    <img src="docs/v1/magiclick.jpg" width="240" />
-  </a>
-  <a href="docs/v1/waveshare.jpg" target="_blank" title="微雪电子 ESP32-S3-Touch-AMOLED-1.8">
-    <img src="docs/v1/waveshare.jpg" width="240" />
-  </a>
-  <a href="docs/lilygo-t-circle-s3.jpg" target="_blank" title="LILYGO T-Circle-S3">
-    <img src="docs/lilygo-t-circle-s3.jpg" width="240" />
-  </a>
-  <a href="docs/xmini-c3.jpg" target="_blank" title="虾哥 Mini C3">
-    <img src="docs/xmini-c3.jpg" width="240" />
-  </a>
-  <a href="docs/v1/movecall-moji-esp32s3.jpg" target="_blank" title="Movecall Moji 小智AI衍生版">
-    <img src="docs/v1/movecall-moji-esp32s3.jpg" width="240" />
-  </a>
-  <a href="docs/v1/wmnologo_xingzhi_1.54.jpg" target="_blank" title="无名科技Nologo-星智-1.54">
-    <img src="docs/v1/wmnologo_xingzhi_1.54.jpg" width="240" />
-  </a>
-  <a href="docs/v1/wmnologo_xingzhi_0.96.jpg" target="_blank" title="无名科技Nologo-星智-0.96">
-    <img src="docs/v1/wmnologo_xingzhi_0.96.jpg" width="240" />
-  </a>
-  <a href="docs/v1/sensecap_watcher.jpg" target="_blank" title="SenseCAP Watcher">
-    <img src="docs/v1/sensecap_watcher.jpg" width="240" />
-  </a>
-</div>
-
-## 固件部分
-
-### 免开发环境烧录
-
-新手第一次操作建议先不要搭建开发环境，直接使用免开发环境烧录的固件。
-
-固件默认接入 [xiaozhi.me](https://xiaozhi.me) 官方服务器，目前个人用户注册账号可以免费使用 Qwen 实时模型。
-
-👉 [Flash烧录固件（无IDF开发环境）](https://ccnphfhqs21z.feishu.cn/wiki/Zpz4wXBtdimBrLk25WdcXzxcnNS) 
+## 快速开始
 
 
-### 开发环境
+#### 一、【前提准备】
+**无IDF开发环境：**
 
-- Cursor 或 VSCode
-- 安装 ESP-IDF 插件，选择 SDK 版本 5.3 或以上
-- Linux 比 Windows 更好，编译速度快，也免去驱动问题的困扰
-- 使用 Google C++ 代码风格，提交代码时请确保符合规范
+首先，你需要准备一个小智AI聊天机器人设备，点击 [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 查看详情。  
+然后，下载对应的固件，提供两个下载地址： 1、[xiaozhi-server4j github release page](https://github.com/big-mouth-cn/xiaozhi-esp32-for-talkx/releases) | 2、[百度网盘](https://pan.baidu.com/s/1wX78aa3Q1bP90Rea5zxJsQ?pwd=taap)。  
+最后，按照教程烧录固件：:point_right: [Flash烧录固件（无IDF开发环境）](https://ccnphfhqs21z.feishu.cn/wiki/Zpz4wXBtdimBrLk25WdcXzxcnNS)
 
+---
 
-## 智能体配置
+**源码编译环境：**
 
-如果你已经拥有一个小智 AI 聊天机器人设备，可以登录 [xiaozhi.me](https://xiaozhi.me) 控制台进行配置。
+将下面指定的配置项的值修改为 `https://api.talkx.cn/xiaozhi/ota/`
 
-👉 [后台操作视频教程（旧版界面）](https://www.bilibili.com/video/BV1jUCUY2EKM/)
+方式1、使用 `scripts/release.py` 编译：  
+   请修改源码中的 `/main/Kconfig.projbuild` 中的 `OTA_VERSION_URL`
 
-## 技术原理与私有化部署
+方式2、使用 `idf.py build` 编译：  
+请使用 `idf.py menuconfig` > `Xiaozhi Assistant` > `OTA Version URL` > 修改后按`S`键并退出；或者修改源码中的 `/sdkconfig` 中的 `CONFIG_OTA_VERSION_URL`。
 
-👉 [一份详细的 WebSocket 通信协议文档](docs/websocket.md)
+#### 二、【绑定设备】
+设备准备好并连接网络之后，进入激活模式。这时打开 [TalkX](https://web.talkx.cn)，并登录。  
+选择左侧任意 AI 的菜单选项，点击「智体」。
+> 点击 ![fenleiorguangchangorqitatianchong.png](docs%2Fscreenshot%2Ffenleiorguangchangorqitatianchong.png) 可以添加更多AI。对于聊天场景，建议选择适合对话场景的AI，如生活类、教育类等。也可以添加后编辑AI，以便适配聊天场景。
 
-在个人电脑上部署服务器，可以参考另一位作者同样以 MIT 许可证开源的项目 [xiaozhi-esp32-server](https://github.com/xinnan-tech/xiaozhi-esp32-server)
+![iShot_2025-03-03_20.35.29.png](docs%2Fscreenshot%2FiShot_2025-03-03_20.35.29.png)
+点击「绑定新设备」，输入小智硬件提示的6位数字验证码，点击「确认」。
+![iShot_2025-03-03_20.36.26.png](docs%2Fscreenshot%2FiShot_2025-03-03_20.36.26.png)
+#### 三、【开始使用】
+唤醒小智，即可开始聊天对话。
 
-## Star History
+## 声音复刻
+打开 TalkX，选择已绑定设备的 AI，进入「智体」，点击页面上方的「我的声音」，复刻声音。  
+![iShot_2025-03-03_20.43.02.png](docs%2Fscreenshot%2FiShot_2025-03-03_20.43.02.png)
 
-<a href="https://star-history.com/#78/xiaozhi-esp32&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=78/xiaozhi-esp32&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=78/xiaozhi-esp32&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=78/xiaozhi-esp32&type=Date" />
- </picture>
-</a>
+复刻成功之后，在「智体设置」页面，声音角色选择刚才复刻的声音，保存即可。
+> 音频时长：10～20秒，不建议超过60秒。在朗读时请保持连贯，至少包含一段超过5秒的连续语音。
+
+![iShot_2025-03-03_20.43.46.png](docs%2Fscreenshot%2FiShot_2025-03-03_20.43.46.png)
+
+## 切换模型
+打开 TalkX，选择已绑定设备的 AI，进入「智体」，点击页面上方的「智体设置」，切换模型。或设置自己的模型服务。
+```
+:boom: 建议选择国内模型，延迟低。模型列表不定期更新或提供测试。
+```
+![iShot_2025-03-05_19.29.24.png](docs%2Fscreenshot%2FiShot_2025-03-05_19.29.24.png)
+
+## 模型调参
+点击AI，更多选项中选择「编辑」，可以设置模型的角色定义及其他配置。
+![iShot_2025-03-03_20.49.59.png](docs%2Fscreenshot%2FiShot_2025-03-03_20.49.59.png)
+![iShot_2025-03-03_20.50.11.png](docs%2Fscreenshot%2FiShot_2025-03-03_20.50.11.png)
+
+# 鸣谢 :love_you_gesture:
+- 小虾智能机器人设备开源项目：[xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)
+- 使用 [Silero-VAD](https://github.com/snakers4/silero-vad) 来检测用户的说话活动
+- 使用 [Concentus](https://github.com/lostromb/concentus) 实现 Opus 音频编码/解码
+- 使用 [SenseVoice](https://github.com/FunAudioLLM/SenseVoice) 实现语音识别
+- 使用 [CosyVoice](https://github.com/FunAudioLLM/CosyVoice)、阿里云、火山引擎提供的语音生成能力
+- 使用 通义千问、豆包、DeepSeek 等大模型实现LLM能力

@@ -31,7 +31,7 @@ def merge_bin():
         sys.exit(1)
 
 def zip_bin(board_type, project_version):
-    output_path = f"releases/v{project_version}_{board_type}.zip"
+    output_path = f"releases/v{project_version}_{board_type}_for_talkx.zip"
     if os.path.exists(output_path):
         os.remove(output_path)
     with zipfile.ZipFile(output_path, 'w') as zipf:
@@ -71,7 +71,7 @@ def release(board_type, board_config):
     # Print Project Version
     project_version = get_project_version()
     print(f"Project Version: {project_version}")
-    release_path = f"releases/v{project_version}_{board_type}.zip"
+    release_path = f"releases/v{project_version}_{board_type}_for_talkx.zip"
     if os.path.exists(release_path):
         print(f"跳过 {board_type} 因为 {release_path} 已存在")
         return

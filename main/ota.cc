@@ -44,13 +44,16 @@ bool Ota::CheckVersion() {
         return false;
     }
 
+    ESP_LOGI(TAG, "Checking version from URL: %s", check_version_url_.c_str());
     auto http = Board::GetInstance().CreateHttp();
     for (const auto& header : headers_) {
+        ESP_LOGI(TAG, "Setting header: %s = %s", header.first.c_str(), header.second.c_str());
         http->SetHeader(header.first, header.second);
     }
 
     http->SetHeader("Content-Type", "application/json");
     std::string method = post_data_.length() > 0 ? "POST" : "GET";
+    ESP_LOGI(TAG, "HTTP %s request with data: %s", method.c_str(), post_data_.length() > 0 ? post_data_.c_str() : "<empty>");
     if (!http->Open(method, check_version_url_, post_data_)) {
         ESP_LOGE(TAG, "Failed to open HTTP connection");
         delete http;
@@ -58,6 +61,7 @@ bool Ota::CheckVersion() {
     }
 
     auto response = http->GetBody();
+    ESP_LOGI(TAG, "Server response: %s", response.c_str());
     http->Close();
     delete http;
 
