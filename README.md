@@ -12,14 +12,15 @@
 
 ## 特性
 - :white_check_mark: 🎉🔥 支持使用自己的声音进行复刻
-- :white_check_mark: 🎉 支持使用自己的大模型服务
+- :white_check_mark: 🎉🔥 支持使用自己的大模型服务
+- :white_check_mark: 🎉🔥 支持通过自动生成并更新记忆
 - :white_check_mark: 基于 MQTT+UDP 协议的语音聊天
 - :white_check_mark: 支持多语言语音识别和语音生成
 - :white_check_mark: 支持多个AI、多个模型、多种声音切换
 - :white_check_mark: 支持通过大模型实现IoT能力（需要选择支持function_call的大模型）
 
 ### 开发中 :construction:
-- 长期记忆
+- 微调更适合聊天的AI智体
 
 ## 快速开始
 
@@ -29,7 +30,7 @@
 
 首先，你需要准备一个小智AI聊天机器人设备，点击 [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 查看详情。  
 然后，下载对应的固件，提供两个下载地址： 1、[xiaozhi-server4j github release page](https://github.com/big-mouth-cn/xiaozhi-esp32-for-talkx/releases) | 2、[百度网盘](https://pan.baidu.com/s/1wX78aa3Q1bP90Rea5zxJsQ?pwd=taap)。  
-最后，按照教程烧录固件：:point_right: [Flash烧录固件（无IDF开发环境）](https://ccnphfhqs21z.feishu.cn/wiki/Zpz4wXBtdimBrLk25WdcXzxcnNS)
+最后，按照教程烧录固件：👉 [Flash烧录固件（无IDF开发环境）](https://ccnphfhqs21z.feishu.cn/wiki/Zpz4wXBtdimBrLk25WdcXzxcnNS)
 
 ---
 
@@ -62,6 +63,10 @@
 > 音频时长：10～20秒，不建议超过60秒。在朗读时请保持连贯，至少包含一段超过5秒的连续语音。
 
 ![iShot_2025-03-03_20.43.46.png](docs%2Fscreenshot%2FiShot_2025-03-03_20.43.46.png)
+
+## 开启记忆
+打开 TalkX，选择已绑定设备的 AI，进入「智体」，点击页面上方的「记忆」，开启或关闭记忆。
+![iShot_2025-03-11_17.48.31.png](docs%2Fscreenshot%2FiShot_2025-03-11_17.48.31.png)
 
 ## 切换模型
 打开 TalkX，选择已绑定设备的 AI，进入「智体」，点击页面上方的「智体设置」，切换模型。或设置自己的模型服务。
