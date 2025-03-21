@@ -62,6 +62,7 @@ void Settings::SetInt(const std::string& key, int32_t value) {
     if (read_write_) {
         ESP_ERROR_CHECK(nvs_set_i32(nvs_handle_, key.c_str(), value));
         dirty_ = true;
+        ESP_LOGD(TAG, ">>>> Set %s=%" PRId32, key.c_str(), value);
     } else {
         ESP_LOGW(TAG, "Namespace %s is not open for writing", ns_.c_str());
     }
