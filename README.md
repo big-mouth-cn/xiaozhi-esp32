@@ -2,7 +2,11 @@
 
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=%E5%B0%8F%E6%99%BA%20AI%20%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA&text2=💖%20for%20TalkX&width=800&height=300)](https://github.com/Akshay090/svg-banners)
 
-本项目在开源智能硬件项目 [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 基础上调整，并且使用 MQTT+UDP 协议与 [TalkX](https://web.talkx.cn) 通信。因此小智硬件通过此项目连接的后台是 TalkX，而非小智官方后台。
+本项目在开源智能硬件项目 [xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 基础上修改了服务端地址，因此小智硬件通过此项目连接的后台是 TalkX，而非小智官方后台。
+
+**TalkX 可以选择[开源部署](https://github.com/big-mouth-cn/talkx)，或直接连接 [TalkX 官网](https://web.talkx.cn)。以下主要介绍如何连接 TalkX 官网。如需连接自己部署的版本，只需修改相关地址即可。**
+
+![iShot_2025-04-03_11.05.42.png](docs%2Fscreenshot%2FiShot_2025-04-03_11.05.42.png)
 
 > 有任何问题或建议加QQ群：953272742
 
