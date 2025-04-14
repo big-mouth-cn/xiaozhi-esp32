@@ -60,7 +60,6 @@ bool MqttProtocol::StartMqttClient(bool report_error) {
     });
 
     mqtt_->OnMessage([this](const std::string& topic, const std::string& payload) {
-        ESP_LOGI(TAG, "Received message on topic '%s': %s", topic.c_str(), payload.c_str());
         cJSON* root = cJSON_Parse(payload.c_str());
         if (root == nullptr) {
             ESP_LOGE(TAG, "Failed to parse json message %s", payload.c_str());
@@ -101,26 +100,24 @@ bool MqttProtocol::StartMqttClient(bool report_error) {
     return true;
 }
 
-void MqttProtocol::SendText(const std::string& text) {
+bool MqttProtocol::SendText(const std::string& text) {
     if (publish_topic_.empty()) {
-        ESP_LOGW(TAG, "Cannot send text: publish topic is not set");
-        return;
+        return false;
     }
-    ESP_LOGI(TAG, "Publishing message to topic '%s': %s", publish_topic_.c_str(), text.c_str());
     if (!mqtt_->Publish(publish_topic_, text)) {
         ESP_LOGE(TAG, "Failed to publish message: %s", text.c_str());
         SetError(Lang::Strings::SERVER_ERROR);
+        return false;
     }
+    return true;
 }
 
 void MqttProtocol::SendAudio(const std::vector<uint8_t>& data) {
     std::lock_guard<std::mutex> lock(channel_mutex_);
     if (udp_ == nullptr) {
-        ESP_LOGW(TAG, "Cannot send audio: UDP channel is not opened");
         return;
     }
 
-//    ESP_LOGI(TAG, "Sending audio data, size: %zu bytes", data.size());
     std::string nonce(aes_nonce_);
     *(uint16_t*)&nonce[2] = htons(data.size());
     *(uint32_t*)&nonce[12] = htonl(++local_sequence_);
@@ -136,8 +133,10 @@ void MqttProtocol::SendAudio(const std::vector<uint8_t>& data) {
         ESP_LOGE(TAG, "Failed to encrypt audio data");
         return;
     }
-    // ESP_LOGD(TAG, "Sending encrypted audio data, total size: %zu bytes", encrypted.size());
+
+    busy_sending_audio_ = true;
     udp_->Send(encrypted);
+    busy_sending_audio_ = false;
 }
 
 void MqttProtocol::CloseAudioChannel() {
@@ -168,6 +167,7 @@ bool MqttProtocol::OpenAudioChannel() {
         }
     }
 
+    busy_sending_audio_ = false;
     error_occurred_ = false;
     session_id_ = "";
     xEventGroupClearBits(event_group_handle_, MQTT_PROTOCOL_SERVER_HELLO_EVENT);
@@ -180,7 +180,9 @@ bool MqttProtocol::OpenAudioChannel() {
     message += "\"audio_params\":{";
     message += "\"format\":\"opus\", \"sample_rate\":16000, \"channels\":1, \"frame_duration\":" + std::to_string(OPUS_FRAME_DURATION_MS);
     message += "}}";
-    SendText(message);
+    if (!SendText(message)) {
+        return false;
+    }
 
     // 等待服务器响应
     EventBits_t bits = xEventGroupWaitBits(event_group_handle_, MQTT_PROTOCOL_SERVER_HELLO_EVENT, pdTRUE, pdFALSE, pdMS_TO_TICKS(10000));
@@ -212,8 +214,6 @@ bool MqttProtocol::OpenAudioChannel() {
         if (sequence != remote_sequence_ + 1) {
             ESP_LOGW(TAG, "Received audio packet with wrong sequence: %lu, expected: %lu", sequence, remote_sequence_ + 1);
         }
-
-//        ESP_LOGI(TAG, "Received audio packet, sequence: %lu, size: %zu", sequence, data.size());
 
         std::vector<uint8_t> decrypted;
         size_t decrypted_size = data.size() - aes_nonce_.size();
