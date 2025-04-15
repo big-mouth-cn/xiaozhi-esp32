@@ -33,7 +33,7 @@ def merge_bin():
 def zip_bin(board_type, project_version):
     if not os.path.exists("releases"):
         os.makedirs("releases")
-    output_path = f"releases/v{project_version}_{board_type}.zip"
+    output_path = f"releases/v{project_version}_{board_type}_for_talkx.zip"
     if os.path.exists(output_path):
         os.remove(output_path)
     with zipfile.ZipFile(output_path, 'w', compression=zipfile.ZIP_DEFLATED) as zipf:
@@ -83,7 +83,7 @@ def release(board_type, board_config):
         name = build["name"]
         if not name.startswith(board_type):
             raise ValueError(f"name {name} 必须以 {board_type} 开头")
-        output_path = f"releases/v{project_version}_{name}.zip"
+        output_path = f"releases/v{project_version}_{name}_for_talkx.zip"
         if os.path.exists(output_path):
             print(f"跳过 {board_type} 因为 {output_path} 已存在")
             continue
