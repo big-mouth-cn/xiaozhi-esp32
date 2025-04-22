@@ -25,25 +25,26 @@
 - :white_check_mark: 支持多个AI、多个模型、多种声音切换
 - :white_check_mark: 支持通过大模型实现IoT能力（需要选择支持function_call的大模型）
 
-### 开发中 :construction:
-- 微调更适合聊天的AI智体
+### 开发中 🚧
+- 集成阿里云百炼平台，支持调用应用，实现包括知识库、联网、MCP和插件一体的Agent。
 
 ## 快速开始
 
 
 #### 一、【前提准备】
 
+首先，你需要准备一个小智AI聊天机器人设备：[《🤖小智 AI 聊天机器人百科全书》](https://ccnphfhqs21z.feishu.cn/wiki/F5krwD16viZoF0kKkvDcrZNYnhb)，然后选择一种适合你的烧录方式。
+
 > 📢 **注意，如果烧录TalkX固件之前已经烧录过其他固件，烧录完成后务必重启一下。否则可能连接的仍是之前的服务器。**
 
-**无IDF开发环境：**
+**烧录方式一：无IDF开发环境：**
 
-首先，你需要准备一个小智AI聊天机器人设备：[《🤖小智 AI 聊天机器人百科全书》](https://ccnphfhqs21z.feishu.cn/wiki/F5krwD16viZoF0kKkvDcrZNYnhb)  
-然后，下载对应的固件，提供两个下载地址： 1、[xiaozhi-server4j github release page](https://github.com/big-mouth-cn/xiaozhi-esp32-for-talkx/releases) | 2、[百度网盘](https://pan.baidu.com/s/1wX78aa3Q1bP90Rea5zxJsQ?pwd=taap)。  
+下载 TalkX 固件，提供两个下载地址： 1、[github release page](https://github.com/big-mouth-cn/xiaozhi-esp32-for-talkx/releases) | 2、[百度网盘](https://pan.baidu.com/s/1wX78aa3Q1bP90Rea5zxJsQ?pwd=taap)。  
 最后，按照教程烧录固件：👉 [Flash烧录固件（无IDF开发环境）](https://ccnphfhqs21z.feishu.cn/wiki/Zpz4wXBtdimBrLk25WdcXzxcnNS)
 
 ---
 
-**源码编译环境：**
+**烧录方式二：源码编译环境：**
 
 将下面指定的配置项的值修改为 `https://api.talkx.cn/xiaozhi/ota/`
 
