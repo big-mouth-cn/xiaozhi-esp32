@@ -24,9 +24,10 @@
 - :white_check_mark: 支持多语言语音识别和语音生成
 - :white_check_mark: 支持多个AI、多个模型、多种声音切换
 - :white_check_mark: 支持通过大模型实现IoT能力（需要选择支持function_call的大模型）
+- :white_check_mark: 集成阿里云百炼平台，支持调用应用，实现包括知识库、联网、MCP和插件一体的Agent
 
 ### 开发中 🚧
-- 集成阿里云百炼平台，支持调用应用，实现包括知识库、联网、MCP和插件一体的Agent。
+
 
 ## 快速开始
 
